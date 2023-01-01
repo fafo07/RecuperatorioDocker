@@ -1,7 +1,10 @@
 FROM python:3.9.16-alpine3.16 
-ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
 WORKDIR /code
-COPY requirements.txt /code/
-RUN python -m pip install -r requirements.txt
-COPY . /code/
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+EXPOSE 5000
+COPY . .
+CMD ["flask", "run"]
