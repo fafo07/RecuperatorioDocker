@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Clone QA env') {
             steps {
-                git 'https://github.com/fafo07/FinalPractice5.git'
+                git 'https://github.com/fafo07/RecuperatorioDocker.git'
             }            
         }
         stage('Change frontend ip'){
@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Deploy QA environment'){
             steps{
-                git 'https://github.com/fafo07/FinalPractice5.git'
+                git 'https://github.com/fafo07/RecuperatorioDocker.git'
                 sh "docker compose down"
                 sh "docker compose up -d"
                 sh "docker compose ps"
