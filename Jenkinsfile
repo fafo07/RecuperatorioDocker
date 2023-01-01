@@ -1,11 +1,11 @@
-def qa_server_ip="192.168.154.81";
-def prod_server_ip="192.168.154.83";
+def qa_server_ip="192.168.154.193";
+def prod_server_ip="192.168.154.192";
 pipeline {
     agent{label 'debian'} // debian node is QA environment
     stages {
         stage('Clone QA env') {
             steps {
-                git '<put here your repository url>'
+                git 'https://github.com/fafo07/FinalPractice5.git'
             }            
         }
         stage('Change frontend ip'){
@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Deploy QA environment'){
             steps{
-                git '<put here your repository url>'
+                git 'https://github.com/fafo07/FinalPractice5.git'
                 sh "docker compose down"
                 sh "docker compose up -d"
                 sh "docker compose ps"
@@ -54,9 +54,9 @@ pipeline {
 
         }
         stage ('Deploy PROD environment'){
-            agent{label 'prod'}
+            agent{label 'PROD'}
             steps{
-                git '<put here your repository url>'
+                git 'https://github.com/fafo07/FinalPractice5.git'
                 unstash 'backend_image'
                 unstash 'frontend_image-prod'
                 sh "docker compose -f docker-compose-prod.yml down"
