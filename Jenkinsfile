@@ -56,7 +56,7 @@ pipeline {
         stage ('Deploy PROD environment'){
             agent{label 'PROD'}
             steps{
-                git 'https://github.com/fafo07/FinalPractice5.git'
+                git 'https://github.com/fafo07/RecuperatorioDocker.git'
                 unstash 'backend_image'
                 unstash 'frontend_image-prod'
                 sh "docker compose -f docker-compose-prod.yml down"
