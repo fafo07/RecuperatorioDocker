@@ -149,7 +149,7 @@ export default {
   },
   methods: {
     getBooks() {
-      const path = 'http://localhost:5000/books';
+      const path = 'http://192.168.154.192:5000/books';
       axios.get(path)
         .then((res) => {
           this.books = res.data.books;
@@ -160,7 +160,7 @@ export default {
         });
     },
     addBook(payload) {
-      const path = 'http://localhost:5000/books';
+      const path = 'http://192.168.154.192:5000/books';
       axios.post(path, payload)
         .then(() => {
           this.getBooks();
